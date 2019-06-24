@@ -2,7 +2,7 @@ name "motion_planning"
 
 version "0.1"
 
-using_library "path_planning"
+using_library "motion_planning"
 
 import_types_from "motion_planningTypes.hpp"
 import_types_from "std"
