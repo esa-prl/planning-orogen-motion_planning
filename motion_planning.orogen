@@ -1,26 +1,78 @@
-name "motion_planning"
+#!/usr/bin/env ruby
+name "path_planning"
+version "0.1"
 
-#version "0.1"
+using_library "path_planning"
 
-using_library "motion_planning"
-
-import_types_from "motion_planningTypes.hpp"
+import_types_from "path_planningTypes.hpp"
 import_types_from "base"
+import_types_from "locomotion_switcher/locomotion_switcherTypes.hpp"
 
 task_context "Task" do
-
     needs_configuration
 
-    property "scriptFile", "char*"
+    property "elevationFile", "/std/string"
 
+    property "localCostFile", "/std/string"
 
-    #input_port "input", "/std/string"
+    property "globalCostFile", "/std/string"
 
-    output_port "roverPath", "std::vector<double>"
-	output_port "roverHeading", "std::vector<double>"
-	output_port "joints", "std::vector<double>"
-	output_port "assignment", "std::vector<int>"
+    property "local_res", "double"
 
-	port_driven
+    property "global_res", "double"
+
+    property "slope_values", "/std/vector<double>"
+
+    property "locomotion_modes", "/std/vector</std/string>"
+
+    property "cost_data", "/std/vector<double>"
+
+    property "keep_old_waypoints", "bool"
+
+    property "risk_distance", "double"
+
+    property "reconnect_distance", "double"
+
+    property "risk_ratio", "double"
+
+    input_port("pose", "base/samples/RigidBodyState").
+        doc "Position and orientation of the Robot"
+
+    input_port("goalWaypoint", "/base/Waypoint").
+        doc "Waypoint of the desired goal"
+
+    input_port("slip_ratio", "double").
+        doc "Value of slip_ratio to update nearest node"
+
+    input_port('traversability_map', 'base/samples/frame/Frame').
+        doc "Map indicating traversable and nontraversable nodes"
+
+    output_port("trajectory", "/std/vector</base/Waypoint>").
+        doc "Trajectory the robot should follow"
+
+    output_port("trajectory2D", "/std/vector</base/Waypoint>").
+        doc "Trajectory the robot should follow projected in the 2d plane"
+
+    output_port("locomotionMode", "locomotion_switcher/LocomotionMode").
+        doc "Locomotion Mode to use to arrive at each Waypoint"
+
+    output_port('actual_total_cost', 'double').
+        doc 'Total Cost to arrive at destination from actual rover position'
+
+    output_port('global_Total_Cost_map', 'base/samples/DistanceImage').
+        doc "Total cost computed on global map"
+
+    output_port('global_Cost_map', 'base/samples/DistanceImage').
+        doc "Nominal Cost computed on global map"
+
+    output_port('local_Risk_map', 'base/samples/DistanceImage').
+        doc "Risk values of local map portion"
+
+    output_port('local_Propagation_map', 'base/samples/DistanceImage').
+        doc "Local Propagation computed"
+
+    output_port('finished_planning', 'bool').
+        doc "signal when plan is done"
+
+    port_driven
 end
-
