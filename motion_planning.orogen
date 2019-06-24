@@ -11,66 +11,11 @@ import_types_from "base"
 task_context "Task" do
     needs_configuration
 
-    property "elevationFile", "/std/string"
+    property "scriptFile", "char*"
 
-    property "localCostFile", "/std/string"
+    
 
-    property "globalCostFile", "/std/string"
-
-    property "local_res", "double"
-
-    property "global_res", "double"
-
-    property "slope_values", "/std/vector<double>"
-
-    property "locomotion_modes", "/std/vector</std/string>"
-
-    property "cost_data", "/std/vector<double>"
-
-    property "keep_old_waypoints", "bool"
-
-    property "risk_distance", "double"
-
-    property "reconnect_distance", "double"
-
-    property "risk_ratio", "double"
-
-    input_port("pose", "base/samples/RigidBodyState").
-        doc "Position and orientation of the Robot"
-
-    input_port("goalWaypoint", "/base/Waypoint").
-        doc "Waypoint of the desired goal"
-
-    input_port("slip_ratio", "double").
-        doc "Value of slip_ratio to update nearest node"
-
-    input_port('traversability_map', 'base/samples/frame/Frame').
-        doc "Map indicating traversable and nontraversable nodes"
-
-    output_port("trajectory", "/std/vector</base/Waypoint>").
-        doc "Trajectory the robot should follow"
-
-    output_port("trajectory2D", "/std/vector</base/Waypoint>").
-        doc "Trajectory the robot should follow projected in the 2d plane"
-
-
-    output_port('actual_total_cost', 'double').
-        doc 'Total Cost to arrive at destination from actual rover position'
-
-    output_port('global_Total_Cost_map', 'base/samples/DistanceImage').
-        doc "Total cost computed on global map"
-
-    output_port('global_Cost_map', 'base/samples/DistanceImage').
-        doc "Nominal Cost computed on global map"
-
-    output_port('local_Risk_map', 'base/samples/DistanceImage').
-        doc "Risk values of local map portion"
-
-    output_port('local_Propagation_map', 'base/samples/DistanceImage').
-        doc "Local Propagation computed"
-
-    output_port('finished_planning', 'bool').
-        doc "signal when plan is done"
+    
 
     port_driven
 end
