@@ -12,7 +12,7 @@ task_context "Task" do
 
     needs_configuration
 
-    property "scriptFile", "/std/char*"
+    property "scriptFile", "char*"
 
 
     #input_port "input", "/std/string"
