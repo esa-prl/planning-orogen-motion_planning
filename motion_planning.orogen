@@ -1,0 +1,27 @@
+name "motion_planning"
+
+version "0.1"
+
+using_library "path_planning"
+
+import_types_from "motion_planningTypes.hpp"
+import_types_from "std"
+import_types_from "base"
+
+task_context "Task" do
+
+    needs_configuration
+
+    property "scriptFile", "char*"
+
+
+    #input_port "input", "/std/string"
+
+    #output_port "roverPath", "std::vector<double>"
+	#output_port "roverHeading", "std::vector<double>"
+	#output_port "joints", "std::vector<double>"
+	#output_port "assignment", "std::vector<int>"
+
+	port_driven
+end
+
