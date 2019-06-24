@@ -5,7 +5,6 @@ name "motion_planning"
 using_library "motion_planning"
 
 import_types_from "motion_planningTypes.hpp"
-import_types_from "std"
 import_types_from "base"
 
 task_context "Task" do
