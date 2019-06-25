@@ -2,14 +2,30 @@
 name "motion_planning"
 version "0.1"
 
+import_types_from "motion_planningTypes.hpp"
+
 using_library "motion_planning"
 
-import_types_from "motion_planningTypes.hpp"
+
 import_types_from "base"
+
 
 
 task_context "Task" do
     needs_configuration
+
     property "scriptFile", "/std/string"
+	property "pathVariable", "/std/string"
+	property "headingVariable", "/std/string"
+	property "jointsVariable", "/std/string"
+	property "assignmentVariable", "/std/string"
+	property "numJoints", "int"
+
+	output_port("roverPath", "std::vector<base::Waypoint>")
+
+	output_port("joints", "std::vector<double>")
+	output_port("assignment", "std::vector<int>")
+	output_port("sizePath","int")
+
     port_driven
 end
