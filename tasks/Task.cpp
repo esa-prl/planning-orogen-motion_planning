@@ -68,15 +68,15 @@ bool Task::startHook()
 	motionPlanner->sizePyArray(sizePath, pathVariable, pyModule);
 
 	// Rover path
-	double *aRoverPath = new double[sizePath*3];	
+	aRoverPath = new double[sizePath*3];	
 	motionPlanner->returnPyArrayDouble(2,pathVariable,aRoverPath, pyModule);
 
 	// Rover heading
-	double *aRoverHeading = new double[sizePath*1];	
+	aRoverHeading = new double[sizePath*1];	
 	motionPlanner->returnPyArrayDouble(1,headingVariable,aRoverHeading, pyModule);
 
 	// Trajectory
-	std::vector<base::Waypoint> roverPath(sizePath);
+	roverPath.resize(sizePath);
 
 	for(int i=0;i<sizePath;i++)
 	{
@@ -86,31 +86,28 @@ bool Task::startHook()
 	
 
 	// Joints
-	double *aJoints = new double[sizePath*numJoints];	
+	aJoints = new double[sizePath*numJoints];	
 	motionPlanner->returnPyArrayDouble(2,jointsVariable,aJoints, pyModule);
 
-	std::vector<double> joints(sizePath*numJoints);
+	joints.resize(sizePath*numJoints);
 	memcpy(&joints[0],&aJoints[0],sizePath*numJoints*sizeof(double));
 
 
 	// Assignment
-	int *aAssignment = new int[sizePath*1];
+	aAssignment = new int[sizePath*1];
 	motionPlanner->returnPyArrayInt(1,assignmentVariable, aAssignment, pyModule);
 	
-	std::vector<int> assignment(sizePath);
+	assignment.resize(sizePath);
 	memcpy(&assignment[0],&aAssignment[0],sizePath*sizeof(int));
-
 			
 
 	motionPlanner->shutDownPython(pyModule);
 
 	std::cout<<"Sending outputs...";
-
 	_roverPath.write(roverPath);
 	_joints.write(joints);
 	_assignment.write(assignment);
 	_sizePath.write(sizePath);
-
 	std::cout<<" done"<<std::endl;
 	
     return true;
@@ -118,6 +115,11 @@ bool Task::startHook()
 void Task::updateHook()
 {
     TaskBase::updateHook();
+	_roverPath.write(roverPath);
+	_joints.write(joints);
+	_assignment.write(assignment);
+	_sizePath.write(sizePath);
+
 }
 void Task::errorHook()
 {

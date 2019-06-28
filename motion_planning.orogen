@@ -27,5 +27,6 @@ task_context "Task" do
 	output_port("assignment", "std::vector<int>")
 	output_port("sizePath","int")
 
-    port_driven
+    periodic 0.01
+
 end

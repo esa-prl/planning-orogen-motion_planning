@@ -21,14 +21,21 @@ namespace motion_planning{
 			char* jointsVariable;
 			char* assignmentVariable;
 			int numJoints;
+			double *aRoverPath;
+			double *aRoverHeading;
+			double *aJoints;
+			int *aAssignment;
 
 			//Output
 			int sizePath;
+			std::vector<base::Waypoint> roverPath;
+			std::vector<double> joints;
+			std::vector<int> assignment;
 
 			//Local
 			PyObject *pyModule;
-
-
+			
+		
 
 		public:
 
