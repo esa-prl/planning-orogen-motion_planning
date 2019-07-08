@@ -20,6 +20,11 @@ task_context "Task" do
 	property "jointsVariable", "/std/string"
 	property "assignmentVariable", "/std/string"
 	property "numJoints", "int"
+	property "xm", "double"
+	property "ym", "double"
+	property "xr", "double"
+	property "yr", "double"
+	property "initHeading", "double"
 
 	output_port("roverPath", "std::vector<base::Waypoint>")
 

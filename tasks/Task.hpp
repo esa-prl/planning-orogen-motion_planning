@@ -26,6 +26,8 @@ namespace motion_planning{
 			double *aJoints;
 			int *aAssignment;
 
+			double xm, ym, xr, yr, initHeading;
+
 			//Output
 			int sizePath;
 			std::vector<base::Waypoint> roverPath;

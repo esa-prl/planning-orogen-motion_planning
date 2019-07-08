@@ -54,6 +54,12 @@ bool Task::configureHook()
 
 	numJoints = _numJoints.get();
 
+	xm = _xm.get();
+	ym = _ym.get();
+	xr = _xr.get();
+	yr = _yr.get();
+	initHeading = _initHeading.get();
+
 
     return true;
 }
@@ -64,6 +70,8 @@ bool Task::startHook()
 
 
 	pyModule = motionPlanner->initPython(scriptFile);
+
+	motionPlanner->runPyFunction("main", pyModule, xm, ym, xr, yr, initHeading);
 
 	motionPlanner->sizePyArray(sizePath, pathVariable, pyModule);
 
