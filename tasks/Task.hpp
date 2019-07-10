@@ -27,6 +27,7 @@ namespace motion_planning{
 			int *aAssignment;
 
 			double xm, ym, xr, yr, initHeading;
+			char* mapDirectory;
 
 			//Output
 			int sizePath;

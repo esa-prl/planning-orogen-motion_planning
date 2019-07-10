@@ -60,6 +60,10 @@ bool Task::configureHook()
 	yr = _yr.get();
 	initHeading = _initHeading.get();
 
+	string_aux =  _mapDirectory.get();
+	mapDirectory = new char[string_aux.length() + 1];
+	strcpy(mapDirectory, string_aux.c_str());
+
 
     return true;
 }
@@ -71,7 +75,7 @@ bool Task::startHook()
 
 	pyModule = motionPlanner->initPython(scriptFile);
 
-	motionPlanner->runPyFunction("main", pyModule, xm, ym, xr, yr, initHeading);
+	motionPlanner->runPyFunction("main", pyModule, xm, ym, xr, yr, initHeading, mapDirectory);
 
 	motionPlanner->sizePyArray(sizePath, pathVariable, pyModule);
 

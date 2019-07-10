@@ -25,6 +25,8 @@ task_context "Task" do
 	property "xr", "double"
 	property "yr", "double"
 	property "initHeading", "double"
+	property "mapDirectory", "/std/string"
+
 
 	output_port("roverPath", "std::vector<base::Waypoint>")
 
