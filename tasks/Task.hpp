@@ -26,7 +26,7 @@ namespace motion_planning{
 			double *aJoints;
 			int *aAssignment;
 
-			double xm, ym, xr, yr, initHeading;
+			double xm, ym, xr, yr, initHeading, resolution, size;
 			char* mapDirectory;
 
 			//Output
