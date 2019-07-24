@@ -32,10 +32,10 @@ task_context "Task" do
 	property "size", "double"
 
 
-	output_port("roverPath", "std::vector<base::Waypoint>")
+	output_port("roverPath", "std/vector<base/Waypoint>")
 
-	output_port("joints", "std::vector<double>")
-	output_port("assignment", "std::vector<int>")
+	output_port("joints", "std/vector<double>")
+	output_port("assignment", "std/vector<int>")
 	output_port("sizePath","int")
 
     periodic 0.01

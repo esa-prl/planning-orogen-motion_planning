@@ -120,12 +120,6 @@ bool Task::startHook()
 
 	motionPlanner->shutDownPython(pyModule);
 
-	std::cout<<"Sending outputs...";
-	_roverPath.write(roverPath);
-	_joints.write(joints);
-	_assignment.write(assignment);
-	_sizePath.write(sizePath);
-	std::cout<<" done"<<std::endl;
 	
     return true;
 }
