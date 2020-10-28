@@ -109,6 +109,16 @@ bool Task::startHook()
 	joints.resize(sizePath*numJoints);
 	memcpy(&joints[0],&aJoints[0],sizePath*numJoints*sizeof(double));
 
+    armProfile.position.resize(sizePath);
+
+    for(int i = 0; i < sizePath; i++)
+    {
+        armProfile.position[i].resize(numJoints);
+        for(int j = 0; j < numJoints; j++)
+            armProfile.position[i][j] = joints[i*numJoints + j];
+
+    }
+
 
 	// Assignment
 	aAssignment = new int[sizePath*1];
@@ -127,7 +137,7 @@ void Task::updateHook()
 {
     TaskBase::updateHook();
 	_roverPath.write(roverPath);
-	_joints.write(joints);
+	_armProfile.write(armProfile);
 	_assignment.write(assignment);
 	_sizePath.write(sizePath);
 

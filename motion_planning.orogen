@@ -21,7 +21,6 @@ task_context "Task" do
 	property "assignmentVariable", "/std/string"
 	property "numJoints", "int"
 
-
 	property "xm", "double"
 	property "ym", "double"
 	property "xr", "double"
@@ -31,10 +30,9 @@ task_context "Task" do
 	property "resolution", "double"
 	property "size", "double"
 
-
 	output_port("roverPath", "std/vector<base/Waypoint>")
 
-	output_port("joints", "std/vector<double>")
+	output_port("armProfile", "motion_planning/ArmProfile")
 	output_port("assignment", "std/vector<int>")
 	output_port("sizePath","int")
 

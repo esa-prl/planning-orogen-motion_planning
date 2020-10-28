@@ -14,7 +14,7 @@ namespace motion_planning{
     	protected:
 		    MotionPlanning_lib::MotionPlanning *motionPlanner;
 
-			//Property
+			// Properties
 			char* scriptFile;
 			char* pathVariable;
 			char* headingVariable;
@@ -29,14 +29,16 @@ namespace motion_planning{
 			double xm, ym, xr, yr, initHeading, resolution, size;
 			char* mapDirectory;
 
-			//Output
+			// Output ports
 			int sizePath;
 			std::vector<base::Waypoint> roverPath;
-			std::vector<double> joints;
+            ArmProfile armProfile;
 			std::vector<int> assignment;
 
-			//Local
+			// Local variables
 			PyObject *pyModule;
+
+			std::vector<double> joints;
 			
 		
 
